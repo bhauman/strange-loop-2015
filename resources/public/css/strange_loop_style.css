@@ -1,0 +1,83 @@
+/* strange-loop CSS */
+body .strange_loop-core {
+    background-color: rgba(24, 26, 38, 0.7);
+}
+
+.strange_loop-core .com-rigsomelight-devcard > * {
+    min-height: 600px;
+    margin-top: 100px;
+    padding-top: 2em;
+    background-color: rgb(24, 26, 38);
+    color: #ddd;
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown {
+     font-size: 1.4em;  
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown h2,
+.strange_loop-core .com-rigsomelight-devcards-markdown h3,
+.strange_loop-core .com-rigsomelight-devcards-markdown h4 {
+    color: rgb(66,240,145);   
+    text-align: center;
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown p {
+    color: rgb(221,184, 138);
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown strong {
+    color: rgb(22,191,252);
+    font-weight: normal;
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown em {
+    color: rgb(66,240,145);   
+}
+
+.strange_loop-core .com-rigsomelight-devcards-markdown li {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: rgb(221,184, 138);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ac-renderer {
+  font: normal 13px Arial, sans-serif;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #666;
+  -moz-box-shadow: 2px 2px 2px rgba(102, 102, 102, .4);
+  -webkit-box-shadow: 2px 2px 2px rgba(102, 102, 102, .4);
+  width: 300px;
+}
+
+.ac-row {
+  cursor: pointer;
+  padding: .4em;
+}
+
+.ac-highlighted {
+  font-weight: bold;
+}
+
+.ac-active {
+  background-color: rgb(253,215,51);
+}

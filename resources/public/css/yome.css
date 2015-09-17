@@ -1,0 +1,251 @@
+/* some style */
+
+.yome-widget-top-price-box {
+    float: right;
+}
+
+body.yome-widget-website-demo {
+    /* background: #111 url(http://dreamgrowers.desi/redskyshelters.com/wp-content/uploads/Redsky-BGV8.jpg) top right no-repeat fixed; */
+
+    background-color: rgb(24,26,38);
+    font-family: 'Maven Pro', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+svg.yome {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+svg.yome ellipse, svg.yome polygon, svg.yome line {
+    stroke: rgb(108, 141, 169);
+    /* stroke: rgb(0,130,240); */
+    stroke: #2997ab;
+    stroke-width: 2;
+}
+
+svg.yome polygon,
+svg.yome ellipse {
+    fill: transparent;
+}
+
+svg.yome .yome-zip-door {
+  -webkit-animation: appear 1s;
+}
+
+svg.yome .yome-door {
+  -webkit-animation: appear 1s;
+}
+
+svg.yome .yome-window {
+  -webkit-animation: appear 1s;
+}
+
+svg.yome .yome-stove-vent {
+  -webkit-animation: appear 1s;
+}
+
+.yome-widget {
+    position: relative;
+    padding: 10px;
+    padding-bottom: 5em;
+    background: rgba(0,0,0,0.21);
+    border-radius: 4px;
+    color: white;
+}
+
+.yome-price-breakdown {
+    display: table;
+    margin: auto;
+    margin-top: 1em;
+    width: 300px;
+}
+
+.yome-price-row {
+    display: table-row;
+}
+
+.yome-price-name {
+    display: table-cell;
+    color: #ccc;
+}
+
+.yome-price-num {
+    padding-left: 1em;
+    text-align: right;
+    display: table-cell;
+    color: #ccc;    
+}
+
+.yome-widget-get-estimate-link {
+    color: white;
+}
+
+.yome-widget-get-estimate-link:visited {
+    color: white;
+}
+
+.yome-widget-options-container {
+    text-align: left;
+    margin-top: 0.5em;
+}
+
+.yome-widget-shipping-form-container {
+    width: 290px;
+    margin: auto;
+}
+
+.yome-widget-shipping-form-container input,
+.yome-widget-shipping-form-container textarea {
+    width: 100%;
+}
+
+.yome-state {
+    margin: 3em;
+    text-align: center;
+    color: #666;
+    font-size: 1.3em;
+}
+
+.yome-svg-container {
+    position: relative;
+    height: 500px; 
+    width: 500px;
+    margin: auto;
+}
+
+.yome-doors-windows-text {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.yome-widget-form-control {
+    margin-bottom: 1.2em;
+}
+
+.yome-shipping-button {
+    padding: 1em;
+    width: 200px;
+    border-radius: 3px;
+    color: white;
+    font-size: 0.9em;
+    border-color: #077589;
+    border-width: 1px;
+    background-color: #2997ab;
+    text-align: center;
+}
+
+.yome-shipping-button:disabled {
+    background-color: grey;
+    border-color: grey;
+    color: #ddd;
+}
+
+.yome-graphic-image {
+    background: transparent url(http://rigsomelight.com/yome-widget/frameup.png) no-repeat center center;
+    /* background-size: cover; */
+    float: right;
+    opacity: 0.8;
+    margin-left: 20px;
+    border: 0px;
+    width: 285px;
+    height: 180px;
+    position:relative;
+    top: -15px;
+}
+
+.yome-widget-center {
+    text-align: center;
+}
+
+.yome-widget-inline-label {
+    display: block;
+}
+
+#com-rigsomelight-yome-widget .yome-widget span.yome-widget-checkbox-label {
+    color: white;
+    color: #f2eac4;    
+}
+
+.yome-widget .corner-controls .op-hidden {
+    -webkit-animation: hide 0.2s;
+    visibility: hidden;
+}
+
+.yome-widget .corner-controls .op-add {
+    -webkit-animation: appear 0.3s;
+}
+
+.yome-widget .yome-controls {
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    /* color: #ccc; */
+    font-family: sans-serif;
+}
+
+.yome-widget .yome-controls a {
+    display: block;
+    color: #ccc;
+    color: #f2eac4;
+    font-family: sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.5s;
+    line-height: 1.2em;
+    white-space: nowrap;
+}
+
+.yome-widget .yome-controls a.op-remove {
+    color: rgb(239, 131, 75);
+}
+
+
+.yome-widget .corner-controls {
+    width: 72px;
+    height: 46px
+}
+
+.yome-widget .corner-controls-offset {
+    position: absolute;
+    top: -21px;
+    left: -35px;     
+}
+
+.yome-widget .face-controls {
+    width: 55px;
+    height: 16px;
+}
+
+.yome-widget .face-controls-offset {
+    position: absolute;
+    top: -8px;
+    left: -27px;     
+}
+
+@-webkit-keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1;}
+}
+
+@-webkit-keyframes hide {
+    0%   { opacity: 1;
+           visibility: visible; }
+    100% { opacity: 0;
+           visibility: hidden; }
+}
+
+@media (max-width: 420px) {
+    .yome-graphic-image {
+        display: none;
+    }
+    div.yome-svg-container {
+        margin: 0px;
+        width:  300px;
+        height: 400px;
+        top:    -50px;
+        left:   -67px;
+        -webkit-transform: scale(0.65);
+        transform: scale(0.78);        
+  }
+}
