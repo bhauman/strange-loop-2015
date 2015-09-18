@@ -8,7 +8,6 @@
    #_[cljs-http.client :as http])
   (:require-macros [cljs.core.async.macros :as m :refer [go]]))
 
-
 (enable-console-print!)
 
 (defn l [x]
@@ -563,20 +562,21 @@
    [:div.yome-widget-form-control
     [:div.yome-widget-label
      [:label "3. Choose the positions of the door and windows:"]]
-    [:div.yome-widget-flex 
+    #_[:div.yome-widget-flex 
      [:div.yome-doors-windows-text 
      [:div.yome-graphic-image]
       [:p "The walls of a Yome are made up of a series of upward and downward facing triangles (see side-bar illustration). The diagram below represents the top plate (the plate between the top of the walls and the bottom of the roof). The diagram's corners represent the tips of the upward facing triangles and the edges represent the downward facing triangles."]
       [:p "The doors and stovepipe vent are placed in upward triangles while the windows and large screen opening are placed in the downward triangles."]]]
     [:div.yome-svg-container 
-    [:svg {:class "yome" :height 500 :width 500
-           :viewBox "-250 -250 500 500"
-           :preserveAspectRatio "xMidYMid meet" }
-     (draw-yome state)]
+     [:svg {:class "yome" :height 500 :width 500
+            :viewBox "-250 -250 500 500"
+            :preserveAspectRatio "xMidYMid meet" }
+      (draw-yome state)]
      (draw-yome-controls state)]]))
 
 
 (defn yome [state]
+  (prn state)
   (sab/html
    [:div.yome-widget
     [:h1.yome-widget-header "BUILD YOUR YOME"]

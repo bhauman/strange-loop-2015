@@ -6,12 +6,14 @@
    [sonic-cljs.pitch :as p]
    [sonic-cljs.visual :refer [option-schema-controls]]
    [strange-loop.chart :as chart]
+   [sablono.core :as sab]
+   [devcards.util.utils :refer [pprint-str]]
    [cljs.core.async :refer [<!]])
   (:require-macros
    [devcards.core :refer [defcard]]
    [cljs.core.async.macros :refer [go]]))
 
-#_(defonce loading-ivy-audio-piano
+(defonce loading-ivy-audio-piano
   (go
     (def ivy-audio-piano (<! (wa/load-ivy-audio-piano)))
     (def piano-synth (wa/piano ivy-audio-piano))
@@ -59,6 +61,7 @@
 (defn melody-pitches [x]
   (melody-notes scale 62 x))
 
+
 (defn beats []
   (iterate #(+ % (/ 1 8)) 0))
 
@@ -80,8 +83,12 @@
 (defn play-melody []
   (play-melody* (rand-melody)))
 
-#_(defcard melody-chart
+(defcard melody-chart
   (let [melody (rand-melody)]
     (js/setTimeout #(play-melody* melody) 500)
-    (chart/simple-xy (map (juxt :pitch :duration) melody))))
+    (sab/html
+     [:div
+      (chart/simple-xy (map (juxt :pitch :duration) melody))
+      [:pre
+       (pprint-str melody)]])))
 

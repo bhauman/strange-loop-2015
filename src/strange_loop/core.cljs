@@ -5,6 +5,7 @@
    [strange-loop.todos]
    [strange-loop.todos-whole]   
    [strange-loop.chart]
+   [strange-loop.yome-dev]
    [goog.ui.ac :as ac]
    [goog.events :as gevents])
   (:require-macros
@@ -34,15 +35,22 @@ rigsomelight.com </br>
    "* Figwheel and live development\n"))
 
 (defcard
+  (sab/html
+   [:div {:style {:textAlign "center" :paddingTop "40px" :width "100%"}}
+    [:img {:src "images/yome.jpg"}]
+    [:h2 "Yome Widget Example"]]))
+
+
+(defcard
   (str "## Problem\n"
-       #_"* code, *reload*, manipulate, **verify** cycle\n"
-       #_"* **UI coding** = *endless tweaking* (highly iterative, increases cost of cycle)\n"
-       #_"## Solution\n"
-       #_"* hot code reloading\n"
-       #_"* just write reloadable code\n"
-       #_"* React.js, and functional coding together make this much easier\n"
-       #_"* figwheel experience report: **people love it** + *high ROI*\n"
-       #_"* instantaneous feedback feels **human**, like carving\n"))
+       "* code, *reload*, manipulate, **verify** cycle\n"
+       "* **UI coding** = *endless tweaking* (highly iterative, increases cost of cycle)\n"
+       "## Solution\n"
+       "* hot code reloading\n"
+       "* just write reloadable code\n"
+       "* React.js, and functional coding together make this much easier\n"
+       "* figwheel experience report: **people love it** + *high ROI*\n"
+       "* instantaneous feedback feels **human**, like carving\n"))
 
 #_(defcard
   (str "## Whole file reloading vs. REPL\n"

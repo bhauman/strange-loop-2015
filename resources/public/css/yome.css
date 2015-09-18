@@ -11,10 +11,13 @@ body.yome-widget-website-demo {
     font-family: 'Maven Pro', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-svg.yome {
-    position: absolute;
+.com-rigsomelight-devcard svg.yome { 
+
+    background: rgb(20,20,28);    
+  /*  position: absolute; 
     top: 0px;
     left: 0px;
+*/
 }
 
 svg.yome ellipse, svg.yome polygon, svg.yome line {
@@ -29,6 +32,7 @@ svg.yome ellipse {
     fill: transparent;
 }
 
+/*
 svg.yome .yome-zip-door {
   -webkit-animation: appear 1s;
 }
@@ -44,6 +48,7 @@ svg.yome .yome-window {
 svg.yome .yome-stove-vent {
   -webkit-animation: appear 1s;
 }
+*/
 
 .yome-widget {
     position: relative;
@@ -168,12 +173,12 @@ svg.yome .yome-stove-vent {
 }
 
 .yome-widget .corner-controls .op-hidden {
-    -webkit-animation: hide 0.2s;
+   /* -webkit-animation: hide 0.2s; */
     visibility: hidden;
 }
 
 .yome-widget .corner-controls .op-add {
-    -webkit-animation: appear 0.3s;
+   /* -webkit-animation: appear 0.3s; */
 }
 
 .yome-widget .yome-controls {

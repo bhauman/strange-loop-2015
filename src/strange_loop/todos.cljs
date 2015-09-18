@@ -19,7 +19,7 @@
 ")
 
 #_(defcard
-  "### The `defcard` marcro raises values from the source code
+  "### The `defcard` macro raises values from the source code
    ### into the **devcards interface** ")
 
 #_(defcard can-have-an-identifier
