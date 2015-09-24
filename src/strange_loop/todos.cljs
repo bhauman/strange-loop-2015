@@ -22,11 +22,18 @@
   "### The `defcard` macro raises values from the source code
    ### into the **devcards interface** ")
 
+(defn square-range [& args]
+  (map (fn [x] (* x x)) (apply range args)))
+
 #_(defcard can-have-an-identifier
-  {:devcards {:dispatches "on type " :key 1}})
+  "can have some documentation"
+  (square-range 10))
 
 #_(defcard renders-react-elements
-  (sab/html [:div "This is a React Element"]))
+  (sab/html
+   [:div "This is a React Element"
+    #_[:img {:src "images/yome.jpg" :width "100%"}]
+    [:h1 "hey"]]))
 
 ;; the mighty todo list
 
@@ -61,15 +68,15 @@
             #_(when completed
               " todo-item-completed"))}
       content
-      #_(if-not false #_completed
-                (sab/html [:button.button-link.done.right
-                           {:onClick #(do
-                                        (music/play-melody)
-                                        (swap! state complete-todo id))}
-                           "done"])
-                #_(sab/html [:button.button-link.not-done.right
-                             {:onClick #(swap! state complete-todo id)}
-                             "not done"]))])))
+      #_(if-not completed
+              (sab/html [:button.button-link.done.right
+                         {:onClick #(do
+                                      (music/play-melody)
+                                      (swap! state complete-todo id))}
+                         "done"])
+              #_(sab/html [:button.button-link.not-done.right
+                           {:onClick #(swap! state un-complete-todo id)}
+                           "not done"]))])))
 
 ;; - card showing regular todo
 
@@ -95,13 +102,16 @@
 ;; - blank todo-item
 
 #_(defcard blank-todos
-  "There are three blank todos here.
+  "There are some blank todos in the list below.
 
-  You should see nothing below this line:"
+  You should only see two todo items rendered."
   (sab/html
    [:div
     (todo-item nil {})
+    (todo-item nil (first sample-todos))
     (todo-item nil {:content ""})
+    (todo-item nil {:content ""})    
+    (todo-item nil (sample-todos 3))
     (todo-item nil {:content "    "})]))
 
 ;; - todo-item that is too long
@@ -110,9 +120,9 @@
 #_(defcard long-todos
   (sab/html
    [:div
-    (todo-item nil {:content (take 6 (repeat "buy lots of milk"))})
-    (todo-item nil {:content (take 10 (repeat "buy lots of milk"))})
-    (todo-item nil {:content (take 20 (repeat "buy lots of milk"))})
+    (todo-item nil {:content (take 6 (repeat "buy lots of milk "))})
+    (todo-item nil {:content (take 10 (repeat "buy lots of milk "))})
+    (todo-item nil {:content (take 20 (repeat "buy lots of milk "))})
     ]))
 
 #_(defcard todolist-example
@@ -123,7 +133,7 @@
 ;;  show state transitions 
 
 (defn update-todo-item [state id f]
-  (mapv #(if (= (:idddd %) id) (f %) %) state))
+  (mapv #(if (= (:id %) id) (f %) %) state))
 
 (defn complete-todo [state id]
   (update-todo-item state id #(assoc % :completed true)))
@@ -133,7 +143,8 @@
 
 ;; - code into a defcard
 
-#_(defcard checking-something (complete-todo sample-todos 1))
+#_(defcard checking-something
+  (complete-todo sample-todos 1))
 
 ;;; - create some tests
 
@@ -141,7 +152,7 @@
   (is (-> (update-todo-item sample-todos 1 #(assoc % :hey true))
         first
         :hey))
-  #_"`complete-todo` should complete a todo:"
+  "`complete-todo` should complete a todo:"
   (is (-> (complete-todo sample-todos 1)
         first
         :completed))
@@ -160,10 +171,10 @@
   (fn [state _]
     (todo-item state (first @state)))
   ;; initial-data
-  sample-todos
+  (vec (take 2 sample-todos))
   ;; devcards options
   {:inspect-data true
-   :history true})
+   :history      true})
 
 
 ;; - work on css for long todo

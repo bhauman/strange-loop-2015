@@ -501,7 +501,6 @@
 
 (defn send-form-data [state]
   (let [data (extract-mail-data state)]
-    (prn data)
     (om/update! state :shipping-form-state :sending)
     #_(go
       (let [res (<! (http/post
@@ -572,7 +571,18 @@
             :viewBox "-250 -250 500 500"
             :preserveAspectRatio "xMidYMid meet" }
       (draw-yome state)]
-     (draw-yome-controls state)]]))
+     (draw-yome-controls state)]
+    #_[:div.yome-svg-container 
+     [:svg {:class "yome" :height 500 :width 500
+            :viewBox "-250 -250 500 500"
+            :preserveAspectRatio "xMidYMid meet" }
+      (draw-yome (update-in state [:sides] #(vec (take 7 %))))]]
+    #_[:div.yome-svg-container 
+     [:svg {:class "yome" :height 500 :width 500
+            :viewBox "-250 -250 500 500"
+            :preserveAspectRatio "xMidYMid meet" }
+      (draw-yome (update-in state [:sides] #(vec (take 6 %))))]]
+    ]))
 
 
 (defn yome [state]

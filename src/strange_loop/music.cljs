@@ -13,7 +13,7 @@
    [devcards.core :refer [defcard]]
    [cljs.core.async.macros :refer [go]]))
 
-(defonce loading-ivy-audio-piano
+#_(defonce loading-ivy-audio-piano
   (go
     (def ivy-audio-piano (<! (wa/load-ivy-audio-piano)))
     (def piano-synth (wa/piano ivy-audio-piano))
@@ -60,6 +60,7 @@
 
 (defn melody-pitches [x]
   (melody-notes scale 62 x))
+
 
 
 (defn beats []

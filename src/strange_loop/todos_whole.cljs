@@ -69,7 +69,7 @@
                        (set! (.-value (rut/get-ref owner "todo-input")) "")
                        true))}]))))
 
-(defcard todo-input-comp
+#_(defcard todo-input-comp
   "We need an input field to allow us to add todos"
   (fn [state _]
     (todo-input state))
@@ -101,9 +101,15 @@
 
 (defonce app-state (atom []))
 
+(defcard todos
+  (fn [app-state]
+    (full-todos app-state))
+  app-state
+  {:frame false})
+
 (defn main []
   (when-let [app-elem (.getElementById js/document "main-app-area")]
-    (js/React.render (full-todos app-state) app-elem)))
+    (js/React.render )))
 
 (add-watch app-state :watching-for-changes (fn [_ _ _ _] (main)))
 

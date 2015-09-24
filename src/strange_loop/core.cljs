@@ -30,27 +30,47 @@ rigsomelight.com </br>
 (defcard
   (str
    "## Context\n"
+   "* Single Page Application development (in browser)\n"   
    "* ClojureScript\n"
-   "* Single Page Application development (in browser)\n"
-   "* Figwheel and live development\n"))
+
+   #_"* Figwheel and live development\n"))
 
 (defcard
+  "<br/>
+   <br/>
+   ## Feedback -> Flow")
+
+(defcard
+  "## Tale of two tryannies
+</br></br>
+
+* incessant browser reloading
+* developing inside the main application"
+)
+
+(defcard
+  "
+  <br/>
+  <br/>
+  ## Pragmatic Solutions
+  <center>something simple, that I can use now</center>")
+
+#_(defcard
   (sab/html
    [:div {:style {:textAlign "center" :paddingTop "40px" :width "100%"}}
     [:img {:src "images/yome.jpg"}]
     [:h2 "Yome Widget Example"]]))
 
-
 (defcard
   (str "## Problem\n"
-       "* code, *reload*, manipulate, **verify** cycle\n"
-       "* **UI coding** = *endless tweaking* (highly iterative, increases cost of cycle)\n"
-       "## Solution\n"
-       "* hot code reloading\n"
-       "* just write reloadable code\n"
-       "* React.js, and functional coding together make this much easier\n"
-       "* figwheel experience report: **people love it** + *high ROI*\n"
-       "* instantaneous feedback feels **human**, like carving\n"))
+       #_"* code, *reload*, manipulate, **verify** cycle\n"
+       #_"* **UI coding** = *endless tweaking* (highly iterative, increases cost of cycle)\n"
+      #_"## Solution\n"
+       #_"* hot code reloading\n"
+       #_"* just write reloadable code\n"
+       #_"* React.js, and ClojureScript together make this much easier\n"
+       #_"* figwheel experience report: **people love it** + *high ROI*\n"
+       #_"* instantaneous feedback feels **human**, like carving\n"))
 
 #_(defcard
   (str "## Whole file reloading vs. REPL\n"
@@ -59,9 +79,11 @@ rigsomelight.com </br>
 
 (defcard
   (str
-   "## *Fluid* **Conversational** Programming\n"
-   "* the goal is to remove interupts and keep the conversation going\n"
-   "## Experiential"))
+   #_"## *Fluid* **Conversational** Programming\n"
+   #_"* the goal is to remove interupts and keep the conversation going\n"
+   "
+<br/><br/><br/><br/><br/>
+## Experiential"))
 
 (defcard
   (str
@@ -106,25 +128,37 @@ rigsomelight.com </br>
 "))
 
 (defcard
+
   ""
   "# Advantages of a Development Application for UIs
 
-* **Flexible dev environment** which has more freedom to enumerate different behaviors and play with the state you supply to your code  
+* **encourages independent components** reveals environmental coupling
 
-* **Validation document** now a QA person or a developer has a document to refer to verify that many different behaviors are working as we expect them to.
+* **Flexible dev environment** freedom to enumerate states, spec out new ideas, create and use devtools
 
-* **reference document** much the same way that tests help demonstrate how certain function calls and components are meant to be used, this document would contain numerous code examples that effectively communicate how the code was intended to be used.
+* **Validation document** create a document to hand off to QA
+
+* **reference document** that demonstrates how the code is supposed to be used
 ")
 
 (defcard
-  ""
-"# Literate Programming
+  "
+   <br/>
+   <br/>
+   ##<center>**hot reloading** <br/>increases the *rate* of feedback</center>
+   <br/>
+   ##<center>**developing outside the main application**<br/> can increase the *bandwidth* of feedback</center>")
 
-* We are now displaying literate program documents **in the enviroment** where the program is intended to run!
-* running code examples are a glaring ommission
-* why are we not doing this?
-* well you probably don't want to create code examples in comments that are being run through a preprocessor
-* sounds like fun eh?
+
+(defcard
+
+  "
+  <br/>
+  <br/>
+
+## Thanks!
+
+<center>Unsession tonight at 8:00</center>
 
 "
   )

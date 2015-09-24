@@ -25,9 +25,7 @@
   :cljsbuild {
               :builds [{:id "devcards"
                         :source-paths ["src" #_"../sonic-cljs/src" "../devcards/src"]
-                        :figwheel { :devcards true
-                                    ;; :autoload false
-                                    :debug true} ;; <- note this
+                        :figwheel { :devcards true } ;; <- note this
                         :compiler { :main       "strange-loop.core"
                                     :asset-path "js/compiled/devcards_out"
                                     :output-to  "resources/public/js/compiled/strange_loop_devcards.js"

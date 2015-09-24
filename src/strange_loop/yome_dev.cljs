@@ -8,35 +8,35 @@
    [cljs.test :refer [is]]
    [devcards.core :refer [defcard defcard-doc deftest] :as dc]))
 
+(enable-console-print!)
+
 (defcard
-  "## What is Devcards?
+  "## Devcards?
    * an attempt to create a lab space for ClojureScript and React   
    * ClojureScript library
-   * development application that interactively renders **cards** arranged by namespace
+   * **development application** that interactively renders **cards** arranged by namespace
    * revolves around the `defcard` macro
 ")
 
 #_(defcard
   "### The `defcard` macro raises values from the source code
-   ### into the **devcards interface** ")
+   ### into the **devcards interface**")
 
 #_(defcard can-have-an-identifier
-  "devcards can also have optional **markdown** documentation"
+  #_"devcards can also have optional **markdown** documentation"
   {:devcards {:dispatches "on type " :key 1}})
 
 (defn square-range [& args]
-  (map #(+ % %) (apply range args)))
+  (map (fn [x] (* x x)) (apply range args)))
 
 #_(defcard square-range-output
-  (square-range 10))
+  (square-range 5 10))
 
 #_(defcard renders-react-elements
   (sab/html
    [:div
     [:p "This is a React Element"]
-    #_[:p "your workspace is in the source"]]))
-
-(enable-console-print!)
+    #_[:img {:src "images/yome.jpg" :width "100%"}]]))
 
 (def sample-sides
   [{:corner nil, :face :window}
@@ -62,40 +62,6 @@
    A `:corner` can take one of the values `[:door-frame :zip-door :stove-vent nil]`
 
    A `:face` can either be `nil` or `:window`.")
-
-(defn l [x]
-  (.log js/console x)
-  x)
-
-(defn prevent-> [f]
-  (fn [e]
-    (.preventDefault e)
-    (f)))
-
-(defn prevent->value [f]
-  (fn [e]
-    (.preventDefault e)
-    (let [v (.-value (.-target e))]
-      (f v))))
-
-(defn prevent->checked [f]
-  (fn [e]
-    (.preventDefault e)
-    (let [v (.-checked (.-target e))]
-      (f v))))
-
-(defn change-yome-sides [yome v]
-  (assoc yome
-         :sides (mapv (fn [i]
-                       (if-let [s (get-in yome [:sides i])]
-                         s
-                         {:corner nil
-                          :face nil})) (range v))))
-
-
-(defonce app-state (atom (change-yome-sides {:form {}} 8)))
-
-(def round js/Math.round)
 
 (defn side-count [yome]
   (count (:sides yome)))
@@ -125,15 +91,10 @@
   "Should be able to walk a radial point around a circle."
   (is (= (:x (radial-point 100 (* 0.5 js/Math.PI))) -100 ))
   (is (= (:y (radial-point 200 js/Math.PI)) -200 ))
-  (is (= (:x (radial-point 300 (* 1.5 js/Math.PI))) 200 ))
-  (is (= (:y (radial-point 400 (* 2 js/Math.PI))) 200)))
+  (is (= (:x (radial-point 300 (* 1.5 js/Math.PI))) 300 ))
+  (is (= (:y (radial-point 400 (* 2 js/Math.PI))) 400)))
 
-
-(defn points [p-list]
-  (string/join " "  (map (comp #(string/join "," %) (juxt :x :y) )
-                         p-list)))
-
-(defn svg-container [content]
+#_(defn svg-container [content]
   (sab/html
    [:svg {:class "yome" :height 500 :width 500
           :viewBox "-250 -250 500 500"
@@ -159,9 +120,6 @@
    (sab/html
     [:ellipse {:cx 0 :cy 0 :rx 15 :ry 15}])))
 
-
-
-
 (defmulti draw identity)
 
 (defmethod draw :default [_ _]
@@ -183,8 +141,7 @@
   (svg-container
    (draw :line {:start {:x 0 :y 0} :end {:x 200 :y 200}})))
 
-
-;; sork on side lines
+;; work on side lines
 
 (defn side-line [radius start-theta end-theta]
   {:start (radial-point radius start-theta)
@@ -204,12 +161,16 @@
 
 ;; work on drawing a window
 
-#_(defmethod draw :window [_ yome]
+(defn points [p-list]
+  (string/join " "  (map (comp #(string/join "," %) (juxt :x :y))
+                         p-list)))
+
+(defmethod draw :window [_ yome]
   (let [theta (yome-theta yome)
-        indent (/ theta 20) ; 6
+        indent (/ theta 6) ; 6
         {:keys [start end]}
         (side-line 160 indent (- theta indent))
-        mid    (radial-point 50 (/ theta 2))] ; 100
+        mid    (radial-point 100 (/ theta 2))] ; 100
     (sab/html [:polygon { :class "yome-window"
                          :key "yome-window"
                          :points (points (list start end mid))}])))
@@ -218,7 +179,7 @@
   (svg-container
    (draw :window sample-data)))
 
-#_(defmethod draw :door-frame [_ yome]
+(defmethod draw :door-frame [_ yome]
   (let [theta (yome-theta yome)
         indent (* 2.2 (/ theta 6))
         door-top (side-line 165 indent (- theta indent))
@@ -229,7 +190,7 @@
                                      (:end door-bottom) (:start door-bottom)))
                :transform (str "rotate(-" (/ (yome-deg yome) 2) ", 0, 0)")}])))
 
-#_(defmethod draw :zip-door [_ yome]
+(defmethod draw :zip-door [_ yome]
   (let [theta (yome-theta yome)
         indent (* 0.15 (/ theta 6))
         zips (map (fn [x]
@@ -245,7 +206,7 @@
                  :end   (radial-point 80 0)} zips))]))
 
 
-#_(defmethod draw :stove-vent [_ yome]
+(defmethod draw :stove-vent [_ yome]
   (let [theta (yome-theta yome)
         point (radial-point 155 0)]
     [:ellipse {:cx (:x point) :cy (:y point) :rx 14 :ry 8
@@ -270,13 +231,13 @@
    (sab/html
     [:g
      (yome-side sample-data 0)
-     #_(yome-side sample-data 1)
-     #_(yome-side sample-data 2)     
-     #_(yome-side sample-data 3)])))
+     (yome-side sample-data 1)
+     (yome-side sample-data 2)     
+     (yome-side sample-data 3)])))
 
 (defn draw-yome [yome]
   (sab/html
-   [:g {:transform (str "rotate(-" (/ (yome-deg yome) 2) ", 0, 0)")}
+   [:g #_{:transform (str "rotate(-" (/ (yome-deg yome) 2) ", 0, 0)")}
     (map (partial yome-side yome) (range (side-count yome)))]))
 
 #_(defcard draw-8-side-yome
@@ -293,6 +254,20 @@
 
 ;; add more windows to the sample data
 
+(defn prevent->value [f]
+  (fn [e]
+    (.preventDefault e)
+    (let [v (.-value (.-target e))]
+      (f v))))
+
+(defn change-yome-sides [yome v]
+  (assoc yome
+         :sides (mapv (fn [i]
+                       (if-let [s (get-in yome [:sides i])]
+                         s
+                         {:corner nil
+                          :face nil})) (range v))))
+
 (defn select-yome-size [n state]
   (sab/html
    [:div
@@ -306,6 +281,8 @@
            [:option {:value (+ 6 i)} y])
          ["HexaYome" "SeptaYome" "OctaYome"])]]))
 
+
+
 #_(defcard change-yome-sides
   (fn [yome _]
     (sab/html
@@ -313,7 +290,7 @@
       (select-yome-size nil yome)
       (small-container (draw-yome @yome))]))
   sample-data
-  #_{:inspect-data true
+  {:inspect-data true
    :history true})
 
 

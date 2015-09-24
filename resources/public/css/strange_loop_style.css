@@ -41,8 +41,9 @@ body .strange_loop-core {
     color: rgb(221,184, 138);
 }
 
-
-
+.strange_loop-todos_whole .com-rigsomelight-devcards-breadcrumbs {
+  display: none;
+}
 
 
 
